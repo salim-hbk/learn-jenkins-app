@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment{
-        SECRET_TOKEN credentials('secret_token')
+        SECRET_TOKEN = credentials('secret_token')
     }
 
     stages {
