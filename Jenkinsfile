@@ -7,7 +7,7 @@ pipeline {
 
     stages {
 
-        stage('qws-cli'){
+        stage('aws-cli'){
 
             agent {
                 docker {
@@ -76,9 +76,9 @@ pipeline {
         // }
     }
 
-    post{
-        always{
-            junit 'jest-results/junit.xml'
-        }
-    }
+    // post{
+    //     always{
+    //         junit 'jest-results/junit.xml'
+    //     }
+    // }
 }
