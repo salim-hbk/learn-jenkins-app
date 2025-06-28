@@ -9,8 +9,8 @@ pipeline {
 
         stage('qws-cli'){
 
-            agent{
-                docker{
+            agent {
+                docker {
                     image 'amazon/aws-cli'
                     args "--entrypoint=''"
                 }
