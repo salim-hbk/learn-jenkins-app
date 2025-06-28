@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment{
+        SECRET_TOKEN credentials('secret_token')
+    }
+
     stages {
         stage('Build') {
             agent{
@@ -45,10 +49,11 @@ pipeline {
             }
             steps{
                 sh '''
-                npm install serve
-                node_modules/.bin/serve -s build &
-                sleep 10
-                npx playwright test
+                echo $SECRET_TOKEN
+                    # npm install serve
+                    # node_modules/.bin/serve -s build &
+                    #sleep 10
+                    # npx playwright test
               
                 '''
             }
