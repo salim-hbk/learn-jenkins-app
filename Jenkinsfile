@@ -21,18 +21,26 @@ pipeline {
         }
 
         stage('Test'){
+            agent{
+                docker{
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
             steps{
                 sh '''
                 echo "Test stage"
-                if [ -f build/index.html ]; then
-                    echo "✅ File exists"
-                    else
-                    echo "❌ File not found"
-                    exit 1
-                fi
+                test -f 'build/index.html'
+                npm test
 
                 '''
             }
+        }
+    }
+
+    post{
+        always{
+            junit 'test-results/junit.xml'
         }
     }
 }
